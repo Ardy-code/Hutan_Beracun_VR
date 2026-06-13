@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <title>Scene 3 - Model Hutan Beracun</title>
+
+    <script src="js/aframe.min.js"></script>
+</head>
+
+<body>
+
+<a-scene>
+
+    <!-- ASSET MODEL -->
+
+    <a-assets>
+
+        <a-asset-item
+            id="model"
+            src="assets/model.glb">
+        </a-asset-item>
+
+    </a-assets>
+
+    <!-- SKY -->
+
+    <a-sky color="#050F05"></a-sky>
+
+    <!-- LIGHT -->
+
+    <a-light
+        type="ambient"
+        intensity="1">
+    </a-light>
+
+    <a-light
+        type="point"
+        position="0 5 -3"
+        intensity="2">
+    </a-light>
+
+    <!-- JUDUL -->
+
+    <a-text
+        value="Scene 3 : Jamur Raksasa"
+        color="white"
+        position="-2 4 -5"
+        width="8">
+    </a-text>
+
+    <!-- MODEL GLB -->
+
+    <a-entity
+        gltf-model="#model"
+        position="0 0 -4"
+        scale="1 1 1"
+        rotation="0 45 0">
+    </a-entity>
+
+    <!-- PETUNJUK -->
+
+    <a-text
+        value="Gerakkan mouse untuk melihat model 3D"
+        color="yellow"
+        position="-3 3 -5"
+        width="6">
+    </a-text>
+
+    <!-- TOMBOL KEMBALI -->
+
+    <a-link
+        href="index.html"
+        title="Kembali"
+        position="-10 2 -10"
+        class="clickable">
+    </a-link>
+
+    <!-- CAMERA -->
+
+    <a-camera position="0 1.6 0">
+
+        <a-cursor
+            color="white"
+            raycaster="objects: .clickable">
+        </a-cursor>
+
+    </a-camera>
+
+</a-scene>
+
+</body>
+</html>

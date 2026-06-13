@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+
+<title>Scene 1 - Hutan Beracun</title>
+
+<script src="js/aframe.min.js"></script>
+<script src="js/aframe-environment-component.min.js"></script>
+<script src="js/components.js"></script>
+
+</head>
+
+<body>
+
+<a-scene>
+
+    <!-- ENVIRONMENT -->
+
+    <a-entity
+    environment="
+    preset: poison;
+    ground: flat;
+    fog: 0.6;">
+    </a-entity>
+
+    <!-- BOX -->
+
+    <a-box
+    id="box1"
+    position="-2 1 -4"
+    color="#39FF14"
+    class="clickable"
+
+    animation="
+    property: rotation;
+    to: 360 360 360;
+    dur: 4000;
+    loop: true;">
+    </a-box>
+
+    <!-- SPHERE -->
+
+    <a-sphere
+    id="sphere1"
+    position="0 1.5 -4"
+    radius="0.8"
+    color="#9B59B6"
+    class="clickable"
+
+    animation="
+    property: material.color;
+    from: #39FF14;
+    to: #9B59B6;
+    dir: alternate;
+    dur: 1000;
+    loop: true;">
+    </a-sphere>
+
+    <!-- CYLINDER -->
+
+    <a-cylinder
+    id="cyl1"
+    position="2 1 -4"
+    radius="0.5"
+    height="2"
+    color="#1E8449"
+    class="clickable">
+    </a-cylinder>
+
+    <!-- CONE -->
+
+    <a-cone
+    id="cone1"
+    position="4 1 -4"
+    radius-bottom="0.7"
+    height="2"
+    color="#39FF14"
+    class="clickable"
+
+    animation="
+    property: rotation;
+    to: 0 360 0;
+    dur: 3000;
+    loop: true;">
+    </a-cone>
+
+    <!-- BLINK OBJECT -->
+
+    <a-sphere
+    position="0 4 -6"
+    radius="0.4"
+    color="yellow"
+    blink="interval:700">
+    </a-sphere>
+
+    <!-- JUDUL -->
+
+    <a-text
+    value="HUTAN BERACUN"
+    color="white"
+    position="-2 4 -6"
+    width="8">
+    </a-text>
+
+    <!-- PORTAL SCENE 2 -->
+
+    <a-link
+    href="scene2.html"
+    title="Panorama 360"
+    position="5 1.6 -6"
+    class="clickable">
+    </a-link>
+
+    <!-- PORTAL SCENE 3 -->
+
+    <a-link
+    href="scene3-model.html"
+    title="Model GLB"
+    position="-5 1.6 -6"
+    class="clickable">
+    </a-link>
+
+    <!-- PANEL INFO -->
+
+    <a-entity
+    id="infoPanel"
+    visible="false"
+    position="0 3 -4">
+
+        <a-plane
+        width="5"
+        height="2"
+        color="black"
+        opacity="0.85">
+        </a-plane>
+
+        <a-text
+        id="infoText"
+        value=""
+        color="white"
+        width="4.5"
+        align="center"
+        position="0 0 0.01">
+        </a-text>
+
+    </a-entity>
+
+    <!-- LIGHT -->
+
+    <a-light
+    type="ambient"
+    intensity="0.8">
+    </a-light>
+
+    <a-light
+    type="directional"
+    intensity="1"
+    position="0 5 0">
+    </a-light>
+
+    <!-- CAMERA -->
+
+    <a-camera position="0 1.6 0">
+
+        <!-- PETUNJUK -->
+
+        <a-entity position="0 -0.8 -2">
+
+            <a-plane
+            width="4"
+            height="0.6"
+            color="black"
+            opacity="0.7">
+            </a-plane>
+
+            <a-text
+            value="Tatap objek 1.5 detik untuk melihat informasi"
+            color="white"
+            align="center"
+            width="4"
+            position="0 0 0.01">
+            </a-text>
+
+        </a-entity>
+
+        <a-cursor
+        color="white"
+        fuse="true"
+        fuse-timeout="1500"
+        raycaster="objects: .clickable">
+        </a-cursor>
+
+    </a-camera>
+
+</a-scene>
+
+<script>
+
+const panel = document.querySelector("#infoPanel");
+const infoText = document.querySelector("#infoText");
+
+let timer;
+
+function tampilInfo(teks){
+
+    infoText.setAttribute("value", teks);
+
+    panel.setAttribute("visible", true);
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+
+        panel.setAttribute("visible", false);
+
+    }, 3000);
+}
+
+/* BOX */
+
+document.querySelector("#box1")
+.addEventListener("click", function(){
+
+   
+
+});
+
+/* SPHERE */
+
+document.querySelector("#sphere1")
+.addEventListener("click", function(){
+
+});
+
+/* CYLINDER */
+
+document.querySelector("#cyl1")
+.addEventListener("click", function(){
+
+
+    let tinggi =
+    parseFloat(this.getAttribute("height"));
+
+    this.setAttribute(
+    "height",
+    tinggi > 1 ? 0.3 : 2
+    );
+
+});
+
+/* CONE */
+
+document.querySelector("#cone1")
+.addEventListener("click", function(){
+
+  
+
+    const warna = [
+    "#39FF14",
+    "#9B59B6",
+    "#00FFFF",
+    "#FF00FF"
+    ];
+
+    this.setAttribute(
+    "color",
+    warna[Math.floor(Math.random()*warna.length)]
+    );
+
+});
+
+</script>
+
+</body>
+</html>
